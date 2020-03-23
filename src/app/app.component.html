@@ -1,9 +1,11 @@
 <div class="container">
-  <app-header></app-header>
+  <app-header (onLinkClick)="onActiveSectionChanged($event)"></app-header>
   <div class="row">
     <div class="col-md-12">
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <app-recipes *ngIf="activeSection === 'recipes'"></app-recipes>
+      <app-shopping-list
+        *ngIf="activeSection === 'shopping-list'"
+      ></app-shopping-list>
     </div>
   </div>
 </div>
