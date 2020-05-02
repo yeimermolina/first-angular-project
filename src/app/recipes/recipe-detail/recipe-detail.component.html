@@ -4,7 +4,7 @@
       [src]="recipe.imagePath"
       [alt]="recipe.name"
       class="img-responsive"
-      style="max-height: 300px"
+      style="max-height: 300px;"
     />
   </div>
 </div>
@@ -21,11 +21,11 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a (click)="addIngredientsToShoppingList()" style="cursor: pointer">
+          <a (click)="addIngredientsToShoppingList()" style="cursor: pointer;">
             Add Ingredients to shopping list</a
           >
           <a (click)="onEditRecipe()"> Edit Recipe</a>
-          <a> Delete Recipe</a>
+          <a (click)="onDeleteRecipe()"> Delete Recipe</a>
         </li>
       </ul>
     </div>
