@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-shopping-list",
   templateUrl: "./shopping-list.component.html",
-  styleUrls: ["./shopping-list.component.css"]
+  styleUrls: ["./shopping-list.component.css"],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[] = [];
@@ -20,6 +20,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         this.ingredients = ingredients;
       }
     );
+  }
+
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index);
   }
 
   ngOnDestroy(): void {
