@@ -1,25 +1,26 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
-import { throwError, Subject } from "rxjs";
+import { throwError, Subject, BehaviorSubject } from "rxjs";
 import { User } from "./user. model";
 
 export interface AuthResponseData {
-  kind: String;
-  idToken: String;
-  email: String;
-  refreshToken: String;
-  expiresIn: String;
-  localId: String;
+  kind: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
   registered?: Boolean;
 }
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
-  user = new Subject<User>();
+  //behavior keeps in memory the previous value, subject doesnt
+  user = new BehaviorSubject<User>(null);
   constructor(private http: HttpClient) {}
 
-  signUp(email: String, password: String) {
+  signUp(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAn3JRPP_kq6DY0ZSzxoPOLp0Iu2bU3iEA",
@@ -37,7 +38,7 @@ export class AuthService {
       );
   }
 
-  signIn(email: String, password: String) {
+  signIn(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAn3JRPP_kq6DY0ZSzxoPOLp0Iu2bU3iEA",
@@ -76,9 +77,9 @@ export class AuthService {
   }
 
   private setUser(
-    email: String,
-    localId: String,
-    token: String,
+    email: string,
+    localId: string,
+    token: string,
     expiresIn: number
   ) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);

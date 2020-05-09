@@ -1,8 +1,8 @@
 export class User {
   constructor(
-    public email: String,
-    id: String,
-    private _token: String,
+    public email: string,
+    id: string,
+    private _token: string,
     private _tokenExpirationDate: Date
   ) {}
 
