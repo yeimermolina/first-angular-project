@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
 import { throwError, Subject, BehaviorSubject } from "rxjs";
 import { User } from "./user. model";
+import { Router } from "@angular/router";
 
 export interface AuthResponseData {
   kind: string;
@@ -18,7 +19,7 @@ export interface AuthResponseData {
 export class AuthService {
   //behavior keeps in memory the previous value, subject doesnt
   user = new BehaviorSubject<User>(null);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
     return this.http
@@ -54,6 +55,11 @@ export class AuthService {
           this.setUser(res.email, res.localId, res.idToken, +res.expiresIn);
         })
       );
+  }
+
+  logOut() {
+    this.user.next(null);
+    this.router.navigate(["/auth"]);
   }
 
   private handleError(errorRes: HttpErrorResponse) {

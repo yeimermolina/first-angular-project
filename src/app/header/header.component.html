@@ -16,7 +16,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right" *ngIf="!!user">
-        <li class="dropdown">
+        <li class="dropdown" (click)="onLogOut()">
           <a>Logout</a>
         </li>
         <li class="dropdown" appDropdown>
