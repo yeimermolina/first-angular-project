@@ -1,5 +1,7 @@
 # MyFirstAngularApp
 
+Live Project: https://angular-app-284a8.firebaseapp.com/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
 ## Development server
